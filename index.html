@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An interactive structured analysis of electric vehicle charge cycles and driving range using historical datasets. Features customized dashboards for charging patterns, battery performance, and EV model comparison.">
+    <title>VoltAnalyze | Electric Vehicle Charge & Range Analysis Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-bolt brand-icon animate-pulse"></i>
+                <span class="brand-text">VoltAnalyze</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-tab="overview" id="nav-overview">
+                        <i class="fa-solid fa-chart-line nav-icon"></i>
+                        <span>Overview</span>
+                    </li>
+                    <li class="nav-item" data-tab="analyst" id="nav-analyst">
+                        <i class="fa-solid fa-charging-station nav-icon"></i>
+                        <span>Charging Patterns</span>
+                    </li>
+                    <li class="nav-item" data-tab="operations" id="nav-operations">
+                        <i class="fa-solid fa-battery-three-quarters nav-icon"></i>
+                        <span>Battery Performance</span>
+                    </li>
+                    <li class="nav-item" data-tab="customer" id="nav-customer">
+                        <i class="fa-solid fa-car-side nav-icon"></i>
+                        <span>Model Comparison</span>
+                    </li>
+                    <li class="nav-item" data-tab="portal" id="nav-portal">
+                        <i class="fa-solid fa-link nav-icon"></i>
+                        <span>Mentor Review Portal</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="project-info">
+                    <p class="project-title">Academic Project</p>
+                    <p class="project-subtitle">Evaluation Dashboard</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1 id="page-title">Executive Summary</h1>
+                    <p id="page-subtitle" class="text-muted">High-level insights & data aggregations of 50,000 charge sessions</p>
+                </div>
+                <div class="header-right">
+                    <div class="weather-badge widget">
+                        <i class="fa-solid fa-temperature-low rain-icon text-info"></i>
+                        <span>Thermal Management: Active</span>
+                    </div>
+                    <div class="status-indicator">
+                        <span class="status-dot online"></span>
+                        <span class="status-text">Connected</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Body -->
+            <div class="dashboard-body">
+
+                <!-- VIEW 1: OVERVIEW -->
+                <section id="view-overview" class="tab-panel active">
+                    <!-- KPI Cards Grid -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card glassmorphism">
+                            <div class="kpi-icon-wrapper val-color-1">
+                                <i class="fa-solid fa-plug-circle-bolt"></i>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">Total Charge Sessions</span>
+                                <h3 class="kpi-value" id="kpi-total-orders">50,000</h3>
+                                <span class="kpi-change positive"><i class="fa-solid fa-bolt"></i> EV charging logs</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card glassmorphism">
+                            <div class="kpi-icon-wrapper val-color-2">
+                                <i class="fa-solid fa-charging-station"></i>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">Avg Power Consumed</span>
+                                <h3 class="kpi-value" id="kpi-avg-value">47.73 kWh</h3>
+                                <span class="kpi-change neutral"><i class="fa-solid fa-minus"></i> Energy per session</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card glassmorphism">
+                            <div class="kpi-icon-wrapper val-color-3">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">Avg Session Cost</span>
+                                <h3 class="kpi-value" id="kpi-avg-fee">$19.64</h3>
+                                <span class="kpi-change neutral"><i class="fa-solid fa-minus"></i> Average cost paid</span>
+                            </div>
+                        </div>
+
+                        <div class="kpi-card glassmorphism">
+                            <div class="kpi-icon-wrapper val-color-4">
+                                <i class="fa-solid fa-road"></i>
+                            </div>
+                            <div class="kpi-data">
+                                <span class="kpi-label">Avg Range Delivered</span>
+                                <h3 class="kpi-value" id="kpi-repeat-rate">349.7 km</h3>
+                                <span class="kpi-change positive"><i class="fa-solid fa-arrow-up"></i> High efficiency</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overview Charts -->
+                    <div class="charts-grid-2">
+                        <div class="chart-card glassmorphism">
+                            <div class="chart-header">
+                                <h4 class="chart-title">Charging Port Type Distribution</h4>
+                                <p class="chart-subtitle">Predominant plug standards utilized across charging stations</p>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chart-overview-mood"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-card glassmorphism">
+                            <div class="chart-header">
+                                <h4 class="chart-title">Weather Impact on Charging Cost & Energy</h4>
+                                <p class="chart-subtitle">Comparing costs and power consumed under cold/rainy vs clear weather</p>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chart-overview-weather"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="full-width-card glassmorphism margin-top-20">
+                        <div class="narrative-section">
+                            <h3><i class="fa-solid fa-lightbulb icon-glow"></i> Strategic Overview Insights</h3>
+                            <p>Our comprehensive analysis of 50,000 charging sessions across major charging networks reveals an average range delivery of approximately <strong>350 km</strong>. Interestingly, weather conditions (cold/rainy vs clear) show minor variations in average energy consumed, proving battery thermal management units function efficiently to offset range drops. The distribution of charging ports is evenly split, with CCS2 and CHAdeMO connectors representing the highest volume, validating high infrastructure compatibility across various electric passenger vehicles.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 2: CHARGING PATTERNS (Aarav) -->
+                <section id="view-analyst" class="tab-panel">
+                    <div class="persona-intro glassmorphism">
+                        <div class="persona-avatar">
+                            <i class="fa-solid fa-city"></i>
+                        </div>
+                        <div class="persona-info">
+                            <h3>Scenario 1: Aarav – City Energy Planner</h3>
+                            <p>Aarav is responsible for managing electricity demand across urban areas. He analyzes charging patterns (time of day, duration, power consumed) to locate peak hours, identify high-demand neighborhoods via heatmaps, and plan charger infrastructure extensions for grid stability.</p>
+                        </div>
+                    </div>
+
+                    <!-- Analyst Charts -->
+                    <div class="charts-grid-2">
+                        <div class="chart-card glassmorphism">
+                            <div class="chart-header">
+                                <h4 class="chart-title">Neighborhood Charger Load & Energy Intake</h4>
+                                <p class="chart-subtitle">Comparative session counts (bars) vs average power consumed in kWh (line)</p>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chart-analyst-city"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-card glassmorphism">
+                            <div class="chart-header">
+                                <h4 class="chart-title">Charger Speed Type Demand</h4>
+                                <p class="chart-subtitle">Session distribution across Level 1, Level 2, and DC Fast chargers</p>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chart-analyst-cuisine"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="charts-grid-2 margin-top-20">
+                        <div class="chart-card glassmorphism">
+                            <div class="chart-header">
+                                <h4 class="chart-title">Time of Day Charging Peak Load</h4>
+                                <p class="chart-subtitle">Average power consumed (kWh) across Morning, Afternoon, Evening, and Night</p>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chart-analyst-meal"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-card glassmorphism">
+                            <div class="chart-header">
+                                <h4 class="chart-title">Weekday vs. Weekend Grid Loading</h4>
+                                <p class="chart-subtitle">Comparing total charge sessions across weekdays and weekends</p>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chart-analyst-daytype"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="full-width-card glassmorphism margin-top-20">
+                        <div class="narrative-section">
+                            <h3><i class="fa-solid fa-bullseye icon-glow"></i> Aarav's Grid Planning Recommendations</h3>
+                            <ul>
+                                <li><strong>Target High-Demand Zones:</strong> Pune East leads in average power consumed (52.58 kWh), followed by Mumbai Central (49.61 kWh). Future charger installations should be expedited in these regions.</li>
+                                <li><strong>Charger Placement:</strong> Level 1 (Slow) and Level 2 (Standard) standard chargers capture the largest market share. Installing fast DC chargers in commercial areas could relieve city peak load bottlenecks.</li>
+                                <li><strong>Time Peak Optimization:</strong> Morning, Afternoon, and Evening slots hold similar portions of demand. Peak evening energy draws represent a key opportunity to implement dynamic grid pricing (Time of Use rates) to smooth utility loading.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 3: BATTERY PERFORMANCE (Meera) -->
+                <section id="view-operations" class="tab-panel">
+                    <div class="persona-intro glassmorphism">
+                        <div class="persona-avatar">
+                            <i class="fa-solid fa-car-battery"></i>
+                        </div>
+                        <div class="persona-info">
+                            <h3>Scenario 2: Meera – EV Taxi Fleet Manager</h3>
+                            <p>Meera oversees daily operations of a large taxi fleet. She tracks battery performance metrics (state of charge, depth of discharge, temperature efficiency) to optimize routes, spot underperforming vehicle packs, and anticipate replacement schedules.</p>
+                        </div>
+                    </div>
+
+                    <!-- Operations Charts -->
+                    <div class="charts-grid-2">
+                        <div class="chart-card glassmorphism">
+                            <div class="chart-header">
+                                <h4 class="chart-title">Session Charge Duration Distribution</h4>
+                                <p class="chart-subtitle">Frequency of charge session durations (in minutes)</p>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chart-ops-time-dist"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-card glassmorphism">
+                            <div class="chart-header">
+                                <h4 class="chart-title">Regional Vehicle Utilization vs. Charging Efficiency</h4>
+                                <p class="chart-subtitle">Correlation of total charge events and battery thermal transfer rate (%) by area</p>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chart-ops-city-perf"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="full-width-card glassmorphism margin-top-20">
+                        <div class="narrative-section">
+                            <h3><i class="fa-solid fa-battery-half icon-glow"></i> Fleet Battery Health Assessment Report</h3>
+                            <p>Charge session durations are uniformly spread across intervals (10 to 140 minutes), pointing to consistent vehicle cycling and scheduled charging shifts. Sector workloads are highest in Mumbai and Pune hubs. To maintain peak health, fleet vehicles in high-temperature areas require pre-conditioned active cooling during DC quick charges. Vehicles in Pune East are operating with slightly lower charging efficiencies (92.9%), indicating a need for preemptive cooling circuit checks.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 4: MODEL COMPARISON (Ravi) -->
+                <section id="view-customer" class="tab-panel">
+                    <div class="persona-intro glassmorphism">
+                        <div class="persona-avatar">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="persona-info">
+                            <h3>Scenario 3: Ravi – Environmentally Conscious Consumer</h3>
+                            <p>Ravi wants to buy an EV, comparing options based on range, cost per kilometer, emissions, and how driving styles (Sport, Eco, Normal) impact battery efficiency in different weather regions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Customer Charts -->
+                    <div class="charts-grid-3">
+                        <div class="chart-card glassmorphism">
+                            <div class="chart-header">
+                                <h4 class="chart-title">EV Model Market Volume</h4>
+                                <p class="chart-subtitle">Share of sessions by popular vehicle models</p>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chart-cust-company"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-card glassmorphism">
+                            <div class="chart-header">
+                                <h4 class="chart-title">Driving Styles Recorded</h4>
+                                <p class="chart-subtitle">Usage patterns affecting state of charge rates</p>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chart-cust-hunger"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-card glassmorphism">
+                            <div class="chart-header">
+                                <h4 class="chart-title">Regional Average EV Range (km)</h4>
+                                <p class="chart-subtitle">Estimated range per charge across cities</p>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chart-cust-repeat"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="full-width-card glassmorphism margin-top-20">
+                        <div class="narrative-section">
+                            <h3><i class="fa-solid fa-square-poll-vertical icon-glow"></i> Ravi's Consumer Decisions</h3>
+                            <p>Vehicle stats show Tesla Model 3 (12,671 sessions) leads, followed closely by Nissan Leaf, Tata Nexon EV, and Hyundai Ioniq 5. Driving styles are evenly distributed among Sport, Normal, and Eco modes. Regional range delivered is extremely stable across networks at ~350 km. High battery capacity and adaptive regenerative braking systems in models like the Hyundai Ioniq 5 offer consumers the best cost-to-performance ratio for regional highway commutes.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 5: TEAM LEAD REQUEST PORTAL -->
+                <section id="view-portal" class="tab-panel">
+                    <div class="portal-grid">
+                        <!-- Left Panel: Request Form -->
+                        <div class="portal-form-card glassmorphism">
+                            <div class="portal-header">
+                                <i class="fa-solid fa-circle-nodes form-icon"></i>
+                                <div>
+                                    <h3>Mentor Review Setup</h3>
+                                    <p>Submit your GitHub repository and live deployment links to your Mentor for project evaluation.</p>
+                                </div>
+                            </div>
+                            
+                            <form id="link-request-form" class="request-form">
+                                <div class="form-group">
+                                    <label for="input-github-link">
+                                        <i class="fa-brands fa-github"></i> GitHub Repository Link
+                                    </label>
+                                    <input type="url" id="input-github-link" placeholder="https://github.com/username/ev-charge-range-analysis" required>
+                                    <span class="input-help">Must be a valid repository URL</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-demo-link">
+                                        <i class="fa-solid fa-display"></i> Live Demo / Tableau Dashboard Link
+                                    </label>
+                                    <input type="url" id="input-demo-link" placeholder="https://public.tableau.com/views/ev-charge-range-analysis..." required>
+                                    <span class="input-help">Tableau public URL or deployed web link</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-notes">
+                                        <i class="fa-solid fa-comment-dots"></i> Additional Submission Notes
+                                    </label>
+                                    <textarea id="input-notes" rows="4" placeholder="Any specific instructions for your mentor reviewing the project..."></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" id="btn-submit-request">
+                                    <i class="fa-solid fa-paper-plane"></i> Submit Request to Mentor
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Right Panel: Status Log -->
+                        <div class="portal-status-card glassmorphism">
+                            <div class="portal-header">
+                                <i class="fa-solid fa-clock-rotate-left form-icon"></i>
+                                <div>
+                                    <h3>Request History & Status</h3>
+                                    <p>Track evaluation requests submitted to the Mentor.</p>
+                                </div>
+                            </div>
+
+                            <div class="status-list" id="request-history-list">
+                                <!-- Initial items will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Data Source -->
+    <script src="data_summary.js?v=2"></script>
+    <!-- Custom JS -->
+    <script src="app.js?v=2"></script>
+</body>
+</html>

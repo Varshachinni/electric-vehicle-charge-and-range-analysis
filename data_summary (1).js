@@ -1,0 +1,173 @@
+window.dashboardData = {
+    "totalSessions": 50000,
+    "avgPowerConsumed": 47.73,
+    "avgChargingCost": 19.64,
+    "avgRangeDelivered": 349.7,
+    "neighborhoodStats": [
+        {
+            "neighborhood": "Mumbai Central",
+            "count": 8443,
+            "avgPowerConsumed": 49.61,
+            "avgChargingCost": 19.75,
+            "avgEfficiency": 93.1
+        },
+        {
+            "neighborhood": "Pune East",
+            "count": 8354,
+            "avgPowerConsumed": 52.58,
+            "avgChargingCost": 19.49,
+            "avgEfficiency": 92.9
+        },
+        {
+            "neighborhood": "Bangalore Tech Park",
+            "count": 8353,
+            "avgPowerConsumed": 43.48,
+            "avgChargingCost": 19.63,
+            "avgEfficiency": 94.0
+        },
+        {
+            "neighborhood": "Delhi Hub",
+            "count": 8309,
+            "avgPowerConsumed": 46.0,
+            "avgChargingCost": 19.56,
+            "avgEfficiency": 92.8
+        },
+        {
+            "neighborhood": "Chandigarh North",
+            "count": 8279,
+            "avgPowerConsumed": 46.64,
+            "avgChargingCost": 19.77,
+            "avgEfficiency": 92.9
+        },
+        {
+            "neighborhood": "Hyderabad South",
+            "count": 8262,
+            "avgPowerConsumed": 48.05,
+            "avgChargingCost": 19.66,
+            "avgEfficiency": 93.0
+        }
+    ],
+    "chargerTypeStats": [
+        {
+            "chargerType": "Level 1 (Slow)",
+            "count": 8452,
+            "avgPowerConsumed": 47.47,
+            "avgEfficiency": 93.0
+        },
+        {
+            "chargerType": "Level 2 (Standard)",
+            "count": 8368,
+            "avgPowerConsumed": 48.85,
+            "avgEfficiency": 92.9
+        },
+        {
+            "chargerType": "DC Fast (50kW)",
+            "count": 8351,
+            "avgPowerConsumed": 48.59,
+            "avgEfficiency": 93.0
+        },
+        {
+            "chargerType": "DC Fast (100kW)",
+            "count": 8301,
+            "avgPowerConsumed": 52.08,
+            "avgEfficiency": 93.0
+        },
+        {
+            "chargerType": "Supercharger (150kW)",
+            "count": 8300,
+            "avgPowerConsumed": 46.48,
+            "avgEfficiency": 92.8
+        },
+        {
+            "chargerType": "Ultra-Fast (250kW)",
+            "count": 8228,
+            "avgPowerConsumed": 42.88,
+            "avgEfficiency": 93.0
+        }
+    ],
+    "timeOfDayStats": [
+        {
+            "timeOfDay": "Morning",
+            "count": 12578,
+            "avgPowerConsumed": 50.54,
+            "avgEfficiency": 93.1
+        },
+        {
+            "timeOfDay": "Afternoon",
+            "count": 12521,
+            "avgPowerConsumed": 47.92,
+            "avgEfficiency": 92.9
+        },
+        {
+            "timeOfDay": "Evening",
+            "count": 12512,
+            "avgPowerConsumed": 47.88,
+            "avgEfficiency": 92.9
+        },
+        {
+            "timeOfDay": "Night",
+            "count": 12389,
+            "avgPowerConsumed": 44.53,
+            "avgEfficiency": 92.9
+        }
+    ],
+    "dayTypeStats": [
+        {
+            "dayType": "Weekend",
+            "count": 25042,
+            "avgPowerConsumed": 46.23
+        },
+        {
+            "dayType": "Weekday",
+            "count": 24958,
+            "avgPowerConsumed": 49.24
+        }
+    ],
+    "durationStats": [
+        { "duration": 10, "count": 3572 },
+        { "duration": 20, "count": 3616 },
+        { "duration": 30, "count": 3542 },
+        { "duration": 40, "count": 3581 },
+        { "duration": 50, "count": 3477 },
+        { "duration": 60, "count": 3632 },
+        { "duration": 70, "count": 3602 },
+        { "duration": 80, "count": 3531 },
+        { "duration": 90, "count": 3668 },
+        { "duration": 100, "count": 3574 },
+        { "duration": 110, "count": 3539 },
+        { "duration": 120, "count": 3519 },
+        { "duration": 130, "count": 3524 },
+        { "duration": 140, "count": 3623 }
+    ],
+    "weatherStats": [
+        {
+            "weatherCondition": "Clear/Warm",
+            "count": 25007,
+            "avgChargingCost": 19.76,
+            "avgPowerConsumed": 49.58
+        },
+        {
+            "weatherCondition": "Cold/Rainy",
+            "count": 24993,
+            "avgChargingCost": 19.52,
+            "avgPowerConsumed": 45.88
+        }
+    ],
+    "portTypeStats": [
+        { "portType": "CCS2", "count": 12672 },
+        { "portType": "CHAdeMO", "count": 12580 },
+        { "portType": "Type 2", "count": 12465 },
+        { "portType": "GB/T", "count": 12283 }
+    ],
+    "drivingStyleStats": [
+        { "drivingStyle": "Sport", "count": 16718 },
+        { "drivingStyle": "Eco", "count": 16696 },
+        { "drivingStyle": "Normal", "count": 16586 }
+    ],
+    "evModelStats": [
+        { "evModel": "Tesla Model 3", "count": 12671 },
+        { "evModel": "Nissan Leaf", "count": 12563 },
+        { "evModel": "Tata Nexon EV", "count": 12494 },
+        { "evModel": "Hyundai Ioniq 5", "count": 12272 }
+    ]
+};
